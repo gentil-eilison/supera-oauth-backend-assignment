@@ -15,8 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from core.views import GoogleLogin, decode_code_view, TestAccessTokenView
+from django.urls import path, include
+from core.views import GoogleLogin, decode_code_view, TestAccessTokenView, GitHubLogin
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from rest_framework_simplejwt.views import TokenRefreshView
 
@@ -24,9 +24,13 @@ from rest_framework_simplejwt.views import TokenRefreshView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', decode_code_view, name='decode-code'),
+    path('auth/', include('dj_rest_auth.urls')),
+    path('auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('auth/social/', include('allauth.socialaccount.urls')),
     path('api/token/test/', TestAccessTokenView.as_view(), name='test-token'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/rest-auth/google/', GoogleLogin.as_view(), name='google_login'),
+    path('api/auth/github/login/', GitHubLogin.as_view(), name='github_login'),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
