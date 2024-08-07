@@ -24,8 +24,8 @@ from rest_framework_simplejwt.views import TokenRefreshView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', decode_code_view, name='decode-code'),
-    path('test-token/', TestAccessTokenView.as_view(), name='test-token'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/test/', TestAccessTokenView.as_view(), name='test-token'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/rest-auth/google/', GoogleLogin.as_view(), name='google_login'),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
