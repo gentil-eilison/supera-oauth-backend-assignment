@@ -93,8 +93,6 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_ALLOW_CREDENTIALS = True
 
-SITE_ID = 1
-
 ROOT_URLCONF = 'oauth.urls'
 
 TEMPLATES = [
@@ -157,6 +155,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
